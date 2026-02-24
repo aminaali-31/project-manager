@@ -1,0 +1,26 @@
+<div class="col-md-4 mb-4">
+    <div class="card shadow-sm p-3">
+        <div class="top">
+            <h5><%= project.name %></h5>
+            <div>
+                <a href="/projects/edit/<%= project.id %>">
+                    <i class="fa-regular fa-pen-to-square"></i>
+             </a>
+                <a href="/projects/delete/<%= project.id %>"
+                   onclick="return confirm('Delete this project?')"
+                   style="color:red;">
+                    <i class="fa-regular fa-trash-can"></i>
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <p><strong>Cost</strong>: <%= project.price.toLocaleString() %></p>
+            <p><strong>Due</strong>: <%= new Date(project.due_date).toDateString() %></p>
+
+            <span class="status badge text-bg-success"
+                  data-status="<%= project.status %>">
+                <%= project.status.charAt(0).toUpperCase() + project.status.slice(1) %>
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Projects Dashboard</title>
+    <%- include('head') %>
+    <style>
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <%- include('nav') %>
+    <main>
+        <h2>Projects Dashboard</h2>
+    <div class="container mt-5">
+    <h2 class="mb-4">📁 Projects</h2>
+        <h4 class="mt-4">🟢 Active Projects</h4>
+        <div class="row">
+        <% projects
+            .filter(p => p.status === "started" || p.status === "completed")
+            .forEach(project => { %>
+
+            <%- include('projectCard', { project }) %>
+
+        <% }) %>
+    </div>
+        <h4 class="mt-4">🟡 Pending Projects</h4>
+        <div class="row">
+        <% projects
+            .filter(p => p.status === "pending")
+            .forEach(project => { %>
+
+            <%- include('projectCard', { project }) %>
+
+        <% }) %>
+        </div>
+        <h4 class="mt-4">🔵 Payment Pending</h4>
+        <div class="row">
+        <% projects
+            .filter(p => p.status === "payment pending")
+            .forEach(project => { %>
+
+            <%- include('projectCard', { project }) %>
+
+        <% }) %>
+        </div>
+        <h4 class="mt-4">⚪ Finished</h4>
+        <div class="row">
+        <% projects
+            .filter(p => p.status === "finished")
+            .forEach(project => { %>
+
+            <%- include('projectCard', { project }) %>
+
+        <% }) %>
+        </div>
+</div>
+</main>
+<%- include('footer') %>
+<script>
+    const statusEls = document.querySelectorAll('.status');
+
+    const classMap = {
+        "pending": "text-bg-warning",
+        "completed": "text-bg-primary",
+        "payment pending": "text-bg-info",
+        "finished": "text-bg-dark",
+        "started": "text-bg-success"
+    };
+
+    statusEls.forEach(stat => {
+        const status = stat.dataset.status;
+        stat.classList.add(classMap[status] || "text-bg-secondary");
+    });
+  
+</script>
+</body>
+</html>

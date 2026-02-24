@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <%- include('head') %>
+</head>
+<body>
+    <%- include('nav') %>
+    <main>
+        <h2>Add Project</h2>
+        <div class="form">
+            <% if(error.length > 0){ %>
+            <div class="alert alert-danger">
+                <%= error[0] %>
+            </div>
+            <% } %>
+
+            <% if(success.length > 0){ %>
+            <div class="alert alert-success">
+                <%= success[0] %>
+            </div>
+            <% } %>
+        <form method="POST" action="/add_project">
+            <div class="mb-3">
+                <label for="name" class="form-label">Title</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="amount" name="cost" required>
+            </div>
+            <label for="select" class="form-label">Status</label>
+            <select class="form-select" aria-label="Default select example" id="select" name="status">
+            <option selected value="">Open this select menu</option>
+            <option value="pending">Pending</option>
+            <option value="started">Started</option>
+            <option value="completed">completed</option>
+            <option value="payment">Payment Pending</option>
+            <option value="finished">Finished</option>
+            </select>
+            <label for="date" class="form-label">Due Date:</label>
+            <input type="date" class="form-control"  name="due_date" id="date">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+    </main>
+    <%- include('footer') %>
+</body>
+</html>

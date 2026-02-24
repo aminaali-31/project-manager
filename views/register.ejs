@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('head') %>
+    <title>Login</title>
+</head>
+<body>
+    <%- include('nav') %>
+    <main>
+        <h2>Create an Account</h2>
+        <% if(error.length > 0){ %>
+        <div class="alert alert-danger">
+            <%= error[0] %>
+        </div>
+        <% } %>
+
+        <% if(success.length > 0){ %>
+        <div class="alert alert-success">
+            <%= success[0] %>
+        </div>
+        <% } %>
+    <div class="form">
+    <form action="/register" method="POST">
+    <div class="mb-3">
+        <label for="userinput" class="form-label">Username</label>
+        <input type="text" class="form-control" id="userinput" name="username">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div> 
+    </main>
+    <%- include('footer') %>
+</body>
+</html>
